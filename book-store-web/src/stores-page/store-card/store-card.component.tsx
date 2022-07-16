@@ -4,6 +4,7 @@ import { BookModel, StoreModel } from '../stores.model';
 import styles from './store-card.module.scss';
 import { Rating } from '../rating/rating.component';
 import { CountryFlag } from '../country-flag/country-flag.component';
+import { DateUtil } from '../../utils/date.util';
 
 interface StoreCardProps {
     store: StoreModel;
@@ -37,7 +38,7 @@ export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
 
             <div className={styles.footer}>
                 <div>
-                    <span>{store.establishmentDate.substring(0, 10)}</span>
+                    <span>{DateUtil.formatDate(store.establishmentDate)}</span>
                     &nbsp;-&nbsp;
                     <a href={store.website} target={'_blank'} rel='noreferrer'>
                         {store.website}

@@ -1,5 +1,3 @@
-export type DateIso = string;
-
 export interface StoreModel {
     id: string;
     name: string;
@@ -7,7 +5,7 @@ export interface StoreModel {
     rating: 1 | 2 | 3 | 4 | 5;
     books: BookModel[];
     countryCode: string;
-    establishmentDate: DateIso;
+    establishmentDate: string;
     website: string;
 }
 
