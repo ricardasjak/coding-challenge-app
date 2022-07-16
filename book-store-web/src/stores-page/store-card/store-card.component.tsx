@@ -3,6 +3,7 @@ import { BookModel, StoreModel } from '../stores.model';
 
 import styles from './store-card.module.scss';
 import { Rating } from '../rating/rating.component';
+import { CountryFlag } from '../country-flag/country-flag.component';
 
 interface StoreCardProps {
     store: StoreModel;
@@ -42,7 +43,7 @@ export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
                         {store.website}
                     </a>
                 </div>
-                <span>{store.countryCode}</span>
+                <CountryFlag code={store.countryCode} />
             </div>
         </div>
     );

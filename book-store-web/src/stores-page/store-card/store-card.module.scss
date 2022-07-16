@@ -39,6 +39,7 @@ $books-border: 1px solid $gray-light;
     @extend %row;
 
     grid-column: 2 span;
+    align-items: center;
     margin-top: 0.5rem;
 }
 
