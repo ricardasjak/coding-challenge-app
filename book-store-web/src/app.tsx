@@ -1,9 +1,5 @@
+import { StoresPage } from './stores-page/stores-page.component';
+
 export const App: React.FC = () => {
-    return (
-        <div>
-            <header>
-                <p>Hello Book Store Web App!</p>
-            </header>
-        </div>
-    );
+    return <StoresPage />;
 };

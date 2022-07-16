@@ -1,0 +1,72 @@
+$books-border: 1px solid $gray-light;
+
+%row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 10rem 1fr;
+    grid-gap: 0.5rem 2rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.5rem $gray-light;
+
+    @include media-mobile {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.body {
+    @extend %row;
+
+    column-gap: 2rem;
+
+    @include media-mobile {
+        flex-direction: column;
+    }
+}
+
+.header {
+    @extend %row;
+}
+
+.footer {
+    @extend %row;
+
+    grid-column: 2 span;
+    margin-top: 0.5rem;
+}
+
+.image {
+    grid-row: span 2;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+
+    @include media-mobile {
+        margin: 0 auto 1rem;
+    }
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    border-bottom: $books-border;
+    border-left: $books-border;
+
+    & > * {
+        padding: 0.5rem;
+        border-top: $books-border;
+        border-right: $books-border;
+    }
+}
+
+.books-header {
+    grid-column: span 2;
+}
