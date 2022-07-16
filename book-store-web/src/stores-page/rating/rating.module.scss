@@ -1,0 +1,13 @@
+.rating {
+    display: flex;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.on {
+    color: $gray-dark;
+}
+
+.off {
+    color: $gray-light;
+}

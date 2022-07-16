@@ -1,13 +1,19 @@
-import { Fragment } from 'react';
+import { Fragment, useCallback } from 'react';
 import { BookModel, StoreModel } from '../stores.model';
 
 import styles from './store-card.module.scss';
+import { Rating } from '../rating/rating.component';
 
 interface StoreCardProps {
     store: StoreModel;
 }
 
 export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
+    const handleRatingChange = useCallback((rating: number) => {
+        // todo: connect to API
+        console.log('new rating set', rating);
+    }, []);
+
     return (
         <div className={styles.card}>
             <img
@@ -18,7 +24,12 @@ export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
 
             <div className={styles.header}>
                 <h2>{store.name}</h2>
-                <div>{store.rating}</div>
+                <div>
+                    <Rating
+                        rating={store.rating}
+                        onChange={handleRatingChange}
+                    />
+                </div>
             </div>
 
             <StoreCardBooks books={store.books} />
