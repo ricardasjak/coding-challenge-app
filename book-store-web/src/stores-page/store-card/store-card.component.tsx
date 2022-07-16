@@ -18,11 +18,13 @@ export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
 
     return (
         <div className={styles.card}>
-            <img
-                className={styles.image}
-                src={store.storeImage}
-                alt={store.name}
-            ></img>
+            <div className={styles.imageContainer}>
+                <img
+                    className={styles.image}
+                    src={store.storeImage}
+                    alt={store.name}
+                ></img>
+            </div>
 
             <div className={styles.header}>
                 <h2>{store.name}</h2>

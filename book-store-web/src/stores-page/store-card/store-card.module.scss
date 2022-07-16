@@ -43,21 +43,31 @@ $books-border: 1px solid $gray-light;
     margin-top: 0.5rem;
 }
 
-.image {
+.image-container {
     grid-row: span 2;
     width: 10rem;
     height: 10rem;
-    border-radius: 50%;
 
     @include media-mobile {
         margin: 0 auto 1rem;
     }
 }
 
+.image {
+    /* images aspect ratios are different,
+       let's ensure it covers circle area without any stretching */
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .books-grid {
     display: grid;
+    grid-template-rows: min-content;
     grid-template-columns: 1fr 1fr;
     width: 100%;
+    height: min-content;
     border-bottom: $books-border;
     border-left: $books-border;
 
