@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from 'react';
+import { Fragment, useCallback, useMemo } from 'react';
 import { BookModel, StoreModel } from '../stores.model';
 
 import styles from './store-card.module.scss';
@@ -53,13 +53,18 @@ export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
 };
 
 const StoreCardBooks: React.FC<{ books: BookModel[] }> = ({ books }) => {
+    const sortedBooks = useMemo(
+        () => books.sort((a, b) => b.copiesSold - a.copiesSold).slice(0, 2),
+        [books],
+    );
+
     return (
         <div className={styles.booksGrid}>
             <h3 className={styles.booksHeader}>Best-selling books</h3>
-            {books.length > 0 ? (
-                books.map((b) => (
+            {sortedBooks.length > 0 ? (
+                sortedBooks.map((b) => (
                     <Fragment key={b.id}>
-                        <span>{b.title}</span>
+                        <span>{b.name}</span>
                         <span>{b.author}</span>
                     </Fragment>
                 ))

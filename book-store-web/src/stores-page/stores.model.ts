@@ -2,7 +2,7 @@ export interface StoreModel {
     id: string;
     name: string;
     storeImage: string;
-    rating: 1 | 2 | 3 | 4 | 5;
+    rating: number;
     books: BookModel[];
     countryCode: string;
     establishmentDate: string;
@@ -11,6 +11,7 @@ export interface StoreModel {
 
 export interface BookModel {
     id: string;
-    title: string;
+    name: string;
     author: string;
+    copiesSold: number;
 }
