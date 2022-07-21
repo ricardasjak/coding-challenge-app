@@ -3,10 +3,11 @@ import styles from './stores-page.module.scss';
 
 // todo: remove mock, replace with real api response
 import { StoresService } from '../stores-api/stores.service';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
+import { STORES_QUERY } from '../stores-api/stores.query';
 
 export const StoresPage: React.FC = () => {
-    const query = useQuery(['todos'], StoresService.getAll, {
+    const query = useQuery([STORES_QUERY], StoresService.getAll, {
         refetchOnMount: true,
     });
 

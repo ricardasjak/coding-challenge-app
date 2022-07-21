@@ -59,4 +59,14 @@ export interface ApiResponse<T> {
     included: Array<CountryEntity | BookEntity | AuthorEntity>;
 }
 
+export interface StorePatchRequest {
+    type: 'stores';
+    id: string;
+    attributes: Partial<StoreAttributes>;
+}
+
+export interface ApiRequest<AttributesType> {
+    data: AttributesType;
+}
+
 export type StoresResponse = ApiResponse<StoreEntity>;

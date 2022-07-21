@@ -1,5 +1,9 @@
 import { StoreModel } from '../stores-page/stores.model';
-import { StoresResponse } from '../api/stores.model';
+import {
+    ApiRequest,
+    StorePatchRequest,
+    StoresResponse,
+} from '../api/stores.model';
 import { StoresUtil } from './stores.util';
 
 const END_POINTS = {
@@ -11,5 +15,24 @@ export const StoresService = {
         const resp = await fetch(END_POINTS.stores);
         const storesResponse = (await resp.json()) as StoresResponse;
         return StoresUtil.makeStoreModels(storesResponse);
+    },
+    updateRating: async (storeId: string, rating: number): Promise<unknown> => {
+        const request: ApiRequest<StorePatchRequest> = {
+            data: {
+                id: storeId,
+                type: 'stores',
+                attributes: {
+                    rating,
+                },
+            },
+        };
+        const resp = await fetch(`${END_POINTS.stores}/${storeId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/vnd.api+json',
+            },
+            body: JSON.stringify(request),
+        });
+        return (await resp.json()) as unknown;
     },
 };

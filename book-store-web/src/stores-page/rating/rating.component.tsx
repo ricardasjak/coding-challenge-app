@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './rating.module.scss';
 
 const MAX_RATING = 5;
@@ -10,6 +10,12 @@ interface RatingProps {
 
 export const Rating: React.FC<RatingProps> = ({ rating, onChange }) => {
     const [hover, setHover] = useState(0);
+
+    useEffect(() => {
+        // reset hover state, if rating is changed externally
+        setHover(0);
+    }, [rating]);
+
     return (
         <div className={styles.rating}>
             {Array(MAX_RATING)
@@ -29,7 +35,7 @@ export const Rating: React.FC<RatingProps> = ({ rating, onChange }) => {
                             onMouseEnter={() => setHover(newRating)}
                             onMouseLeave={() => setHover(rating)}
                         >
-                            <span className='star'>&#9733;</span>
+                            <span>&#9733;</span>
                         </div>
                     );
                 })}
