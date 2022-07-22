@@ -55,16 +55,28 @@ pw.describe('Book stores page', () => {
         // rating: change value
         pw.expect(await ratingEl.locator('div[role="button"]').count()).toBe(5);
         await Promise.all([
-            ratingEl.locator('div[aria-label="1 star"]').click(),
-            page.waitForRequest('http://localhost:3000/stores/1'),
+            ratingEl
+                .locator('div[aria-label="1 star"]')
+                .click()
+                .then(async () => {
+                    pw.expect(
+                        await ratingEl.getAttribute('aria-valuenow'),
+                    ).toEqual('1'); // optimistic update, min value
+                }),
+            page.waitForRequest('http://localhost:3000/stores/1'), // todo: fully mock PATCH endpoint to avoid error fallback
         ]);
-        pw.expect(await ratingEl.getAttribute('aria-valuenow')).toEqual('1');
         // rating: change value (again)
         await Promise.all([
-            ratingEl.locator('div[aria-label="5 stars"]').click(),
+            ratingEl
+                .locator('div[aria-label="5 stars"]')
+                .click()
+                .then(async () => {
+                    pw.expect(
+                        await ratingEl.getAttribute('aria-valuenow'),
+                    ).toEqual('5'); // optimistic update, max value
+                }),
             page.waitForRequest('http://localhost:3000/stores/1'),
         ]);
-        pw.expect(await ratingEl.getAttribute('aria-valuenow')).toEqual('5');
 
         // best sellers
         await card.locator(textVal('JavaScript: The Good Parts')).waitFor();
