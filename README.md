@@ -26,8 +26,22 @@ Playwright is used for e2e tests.
 
 ```shell
     cd book-store-web
+    npx playwright install
     npm run test:e2e
 ```
 
+### Run code check (for development)
+It runs all static code analysis with attempt to fix it, also runs unit/e2e tests.
+```shell
+    cd book-store-web
+    npm run code:check
+```
+
+### Todos
+There are several areas for improvement
+* There is no real `JsonApi` service, which should be separated from `/store` endpoint specifics.
+* Have universal utility function to build response objects enriched with relational data (fields).
+* Current `JsonApi` models is just fist naive approach to define data.
+* Rating component a11y (accessibility) should be improved, so we can assert its value in e2e tests. 
 
 
