@@ -45,18 +45,27 @@ pw.describe('Book stores page', () => {
         await card.locator(textVal('09.02.1995')).waitFor();
         // website url
         await card.locator(textVal(store.website)).waitFor();
+
         // rating: todo: fix Rating component a11y, and assert current value
         const ratingEl = card.locator('div[aria-label=rating]').first();
         await ratingEl.waitFor();
+        pw.expect(await ratingEl.getAttribute('aria-valuenow')).toEqual(
+            store.rating.toString(),
+        );
+        // rating: change value
         pw.expect(await ratingEl.locator('div[role="button"]').count()).toBe(5);
         await Promise.all([
             ratingEl.locator('div[aria-label="1 star"]').click(),
             page.waitForRequest('http://localhost:3000/stores/1'),
         ]);
+        pw.expect(await ratingEl.getAttribute('aria-valuenow')).toEqual('1');
+        // rating: change value (again)
         await Promise.all([
             ratingEl.locator('div[aria-label="5 stars"]').click(),
             page.waitForRequest('http://localhost:3000/stores/1'),
         ]);
+        pw.expect(await ratingEl.getAttribute('aria-valuenow')).toEqual('5');
+
         // best sellers
         await card.locator(textVal('JavaScript: The Good Parts')).waitFor();
         await card.locator(textVal('Douglas Crockford')).waitFor();

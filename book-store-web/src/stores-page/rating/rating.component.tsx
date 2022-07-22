@@ -17,7 +17,11 @@ export const Rating: React.FC<RatingProps> = ({ rating, onChange }) => {
     }, [rating]);
 
     return (
-        <div className={styles.rating} aria-label='rating'>
+        <div
+            className={styles.rating}
+            aria-label='rating'
+            aria-valuenow={rating}
+        >
             {Array(MAX_RATING)
                 .fill(0)
                 .map((_, index) => {
