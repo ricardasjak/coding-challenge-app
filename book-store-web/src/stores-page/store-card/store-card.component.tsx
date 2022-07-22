@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 import { BookModel, StoreModel } from '../stores.model';
 
 import styles from './store-card.module.scss';

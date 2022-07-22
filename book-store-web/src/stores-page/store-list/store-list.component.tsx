@@ -9,10 +9,12 @@ interface StoreListProps {
 
 export const StoreList: React.FC<StoreListProps> = ({ stores }) => {
     return (
-        <div className={styles.list}>
+        <ul className={styles.list}>
             {stores.map((store) => (
-                <StoreCard key={store.id} store={store} />
+                <li key={store.id}>
+                    <StoreCard store={store} />
+                </li>
             ))}
-        </div>
+        </ul>
     );
 };

@@ -1,4 +1,6 @@
 .list {
     display: grid;
     grid-gap: 1.5rem;
+    padding: 0; // reset list padding
+    list-style-type: none;
 }

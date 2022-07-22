@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "test": "npx jest",
     "test:e2e": "npx playwright test",
-    "code:check": "npm run lint:ts && npm run lint:styles && npm run test",
+    "code:check": "npm run lint:ts && npm run lint:styles && npm run test && npm run test:e2e",
     "lint:ts": "eslint --ext .ts,.tsx src --fix",
     "lint:styles": "stylelint \"src/**/*.scss\" --fix"
   },

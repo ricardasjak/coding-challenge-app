@@ -17,7 +17,7 @@ export const Rating: React.FC<RatingProps> = ({ rating, onChange }) => {
     }, [rating]);
 
     return (
-        <div className={styles.rating}>
+        <div className={styles.rating} aria-label='rating'>
             {Array(MAX_RATING)
                 .fill(0)
                 .map((_, index) => {
@@ -34,6 +34,9 @@ export const Rating: React.FC<RatingProps> = ({ rating, onChange }) => {
                             onClick={() => onChange(newRating)}
                             onMouseEnter={() => setHover(newRating)}
                             onMouseLeave={() => setHover(rating)}
+                            aria-label={`${newRating} ${
+                                newRating > 1 ? 'stars' : 'star'
+                            }`}
                         >
                             <span>&#9733;</span>
                         </div>
