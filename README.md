@@ -43,4 +43,11 @@ There are several areas for improvement
 * Have universal utility function to build response objects enriched with relational data (fields).
 * Current `JsonApi` models is just fist naive approach to define data.
 
+### Notes
+* This task was done as part of screening process at [Squirro](https://squirro.com/).
+* `book-store-api` folder contains already given server side code, I haven't added a single line there.
+* I used Vite as build tool, because I wanted to try something different, something less heavy than CRA (webpack).
+* I decided to try out Playwright for e2e tests - a new tool for me (good opportunity to compare it with Cypress).
+* I have preference to invest more into e2e tests, rather than write unit tests for React components and services.
+
 
