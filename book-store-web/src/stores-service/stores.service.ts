@@ -1,9 +1,5 @@
 import { StoreModel } from '../stores-page/stores.model';
-import {
-    ApiRequest,
-    StorePatchRequest,
-    StoresResponse,
-} from '../api/stores.model';
+import { ApiRequest, StorePatchRequest, StoresResponse } from './stores.model';
 import { StoresUtil } from './stores.util';
 
 const END_POINTS = {

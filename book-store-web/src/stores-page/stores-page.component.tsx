@@ -2,9 +2,9 @@ import { StoreList } from './store-list/store-list.component';
 import styles from './stores-page.module.scss';
 
 // todo: remove mock, replace with real api response
-import { StoresService } from '../stores-api/stores.service';
+import { StoresService } from '../stores-service/stores.service';
 import { useQuery } from 'react-query';
-import { STORES_QUERY } from '../stores-api/stores.query';
+import { STORES_QUERY } from '../stores-service/stores.query';
 
 export const StoresPage: React.FC = () => {
     const query = useQuery([STORES_QUERY], StoresService.getAll, {

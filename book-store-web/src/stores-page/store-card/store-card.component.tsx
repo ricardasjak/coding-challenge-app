@@ -5,9 +5,9 @@ import styles from './store-card.module.scss';
 import { Rating } from '../rating/rating.component';
 import { CountryFlag } from '../country-flag/country-flag.component';
 import { DateUtil } from '../../utils/date.util';
-import { StoresService } from '../../stores-api/stores.service';
+import { StoresService } from '../../stores-service/stores.service';
 import { useMutation, useQueryClient } from 'react-query';
-import { STORES_QUERY } from '../../stores-api/stores.query';
+import { STORES_QUERY } from '../../stores-service/stores.query';
 
 interface StoreCardProps {
     store: StoreModel;

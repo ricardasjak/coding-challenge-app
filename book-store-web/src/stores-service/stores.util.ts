@@ -3,7 +3,7 @@ import {
     BookEntity,
     CountryAttributes,
     StoresResponse,
-} from '../api/stores.model';
+} from './stores.model';
 import { StoreModel } from '../stores-page/stores.model';
 
 export const StoresUtil = {
