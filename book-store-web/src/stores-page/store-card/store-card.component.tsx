@@ -5,47 +5,14 @@ import styles from './store-card.module.scss';
 import { Rating } from '../rating/rating.component';
 import { CountryFlag } from '../country-flag/country-flag.component';
 import { DateUtil } from '../../utils/date.util';
-import { StoresService } from '../../stores-service/stores.service';
-import { useMutation, useQueryClient } from 'react-query';
-import { STORES_QUERY } from '../../stores-service/stores.query';
+import { useRatingMutation } from '../useRatingMutation.hook';
 
 interface StoreCardProps {
     store: StoreModel;
 }
 
 export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
-    const queryClient = useQueryClient();
-
-    const mutation = useMutation(
-        (newRating: number) => StoresService.updateRating(store.id, newRating),
-        {
-            onMutate: async (value) => {
-                // Cancel current queries
-                await queryClient.cancelQueries([STORES_QUERY]);
-
-                // Use optimistic update
-                queryClient.setQueryData([STORES_QUERY], (old = []) => {
-                    const newData = [...(old as StoreModel[])]; // types handling is not super nice in react query
-                    const foundStore = newData.find(
-                        ({ id }) => id === store.id,
-                    );
-                    if (foundStore) {
-                        foundStore.rating = value;
-                    }
-                    return newData;
-                });
-            },
-            onSuccess: (result, variables, context) => {
-                // optimistic update is good enough, however this can be improved
-                console.log('success', { result, variables, context });
-            },
-            onError: async (error, variables, context) => {
-                console.log('error', { error, variables, context });
-                alert('Rating cannot be changed. Some error occurred');
-                await queryClient.refetchQueries([STORES_QUERY]);
-            },
-        },
-    );
+    const ratingMutation = useRatingMutation(store);
 
     return (
         <div className={styles.card}>
@@ -59,7 +26,10 @@ export const StoreCard: React.FC<StoreCardProps> = ({ store }) => {
 
             <div className={styles.header}>
                 <h2>{store.name}</h2>
-                <Rating rating={store.rating} onChange={mutation.mutate} />
+                <Rating
+                    rating={store.rating}
+                    onChange={ratingMutation.mutate}
+                />
             </div>
 
             <StoreCardBooks books={store.books} />
